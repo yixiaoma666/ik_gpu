@@ -1,6 +1,7 @@
 import torch
 import warnings
 import numpy as np
+import tqdm
 
 
 class IK_inne_gpu():
@@ -54,7 +55,7 @@ class IK_inne_gpu():
         
         batch_num = np.ceil(X.shape[0] / batch_size).astype(int)
         
-        for _batch_num in range(batch_num):
+        for _batch_num in tqdm.trange(batch_num):
             start_idx = _batch_num * batch_size
             end_idx = (_batch_num + 1) * batch_size if _batch_num < batch_num - 1 else X.shape[0]
             

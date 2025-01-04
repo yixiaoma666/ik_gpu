@@ -1,6 +1,7 @@
 import torch
 import warnings
 import numpy as np
+import tqdm
 
 
 class IK_anne_gpu():
@@ -17,7 +18,6 @@ class IK_anne_gpu():
         self._center_index_list = None
         self._radius_list = None
         self.X: np.ndarray = None
-        
 
     def fit(self,
             X: np.ndarray,
@@ -55,7 +55,7 @@ class IK_anne_gpu():
         
         batch_num = np.ceil(X.shape[0] / batch_size).astype(int)
         
-        for _batch_num in range(batch_num):
+        for _batch_num in tqdm.trange(batch_num):
             start_idx = _batch_num * batch_size
             end_idx = (_batch_num + 1) * batch_size if _batch_num < batch_num - 1 else X.shape[0]
             
