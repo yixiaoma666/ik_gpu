@@ -23,12 +23,6 @@ class IK_inne_gpu():
             ) -> None:
         self.X = X
         
-
-    def fit(self,
-            X: np.ndarray,
-            ) -> None:
-        self.X = X
-        
         if self._psi > X.shape[0]:
             self._psi = X.shape[0]
             warnings.warn(f"psi is set to {X.shape[0]} as it is greater than the number of data points.")

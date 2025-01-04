@@ -18,11 +18,6 @@ class IK_anne_gpu():
         self._radius_list = None
         self.X: np.ndarray = None
         
-    def fit(self,
-            X: np.ndarray,
-            ) -> None:
-        self.X = X
-        
 
     def fit(self,
             X: np.ndarray,
