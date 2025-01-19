@@ -29,7 +29,7 @@ class IK_inne_gpu():
             warnings.warn(f"psi is set to {X.shape[0]} as it is greater than the number of data points.")
         
         # shape=(t, psi)
-        self._center_index_list = np.array([np.random.permutation(X.shape[0])[:self._psi] for _ in range(self._t)])
+        self._center_index_list = np.random.randint(0, X.shape[0], size=(self._t, self._psi))
         self._center_list = np.zeros((self._psi * self._t, X.shape[1]))
         
         self._radius_list = torch.zeros((self._t, self._psi), dtype=torch.float32, device=self.device)
