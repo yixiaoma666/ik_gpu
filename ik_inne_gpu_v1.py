@@ -29,7 +29,7 @@ class IK_inne_gpu():
             warnings.warn(f"psi is set to {X.shape[0]} as it is greater than the number of data points.")
         
         # shape=(t, psi)
-        self._center_index_list = np.random.randint(0, X.shape[0], size=(self._t, self._psi))
+        self._center_index_list = np.random.choice(X.shape[0], size=(self._t, self._psi), replace=False)
         self._center_list = np.zeros((self._psi * self._t, X.shape[1]))
         
         self._radius_list = torch.zeros((self._t, self._psi), dtype=torch.float32, device=self.device)
@@ -70,7 +70,7 @@ class IK_inne_gpu():
 
                 p2ns_index = torch.argmin(p2s, dim=1)
                 p2ns = p2s[torch.arange(batch_cuda.shape[0], device=self.device), p2ns_index]
-                ind = p2ns < self._radius_list[i, p2ns_index]
+                ind = p2ns <= self._radius_list[i, p2ns_index]
                 output[start_idx:end_idx, :][ind, (p2ns_index + i * self._psi)[ind]] = 1
 
         if X.shape[0] == 1:
