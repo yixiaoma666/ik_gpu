@@ -77,8 +77,3 @@ class IK_inne_gpu():
             return output.reshape(-1)
 
         return output.numpy()
-
-data = np.random.rand(10000, 3)
-
-ik = IK_inne_gpu(t=15, psi=8)
-ik.fit(data)
