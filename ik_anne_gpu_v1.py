@@ -70,7 +70,7 @@ class IK_anne_gpu():
 
                 p2ns_index = torch.argmin(p2s, dim=1)
                 
-                output[start_idx+batch_size*_batch_num:end_idx+batch_size*_batch_num, :][torch.arange(batch_cuda.shape[0]), (p2ns_index + i * self._psi)] = 1
+                output[start_idx:end_idx, :][torch.arange(batch_cuda.shape[0]), (p2ns_index + i * self._psi)] = 1
 
         if X.shape[0] == 1:
             return output.reshape(-1)
