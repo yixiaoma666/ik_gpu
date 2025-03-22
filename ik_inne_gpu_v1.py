@@ -71,7 +71,7 @@ class IK_inne_gpu():
                 p2ns_index = torch.argmin(p2s, dim=1)
                 p2ns = p2s[torch.arange(batch_cuda.shape[0], device=self.device), p2ns_index]
                 ind = p2ns <= self._radius_list[i, p2ns_index]
-                output[start_idx:end_idx, :][ind, (p2ns_index + i * self._psi)[ind]] = 1
+                output[start_idx+batch_size:end_idx+batch_size, :][ind, (p2ns_index + i * self._psi)[ind]] = 1
 
         if X.shape[0] == 1:
             return output.reshape(-1)
