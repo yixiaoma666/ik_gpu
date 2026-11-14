@@ -13,3 +13,5 @@ venv/
 
 # test
 env.ps1
+run.ps1
+test.py
