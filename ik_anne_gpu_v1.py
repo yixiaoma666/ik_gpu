@@ -8,11 +8,14 @@ class IK_anne_gpu():
     def __init__(self,
                  t,
                  psi,
+                 use_gpu: bool = True,
                  ) -> None:
-        if not torch.cuda.is_available():
-            raise Exception("CUDA is not available.")
-        else:
+        if use_gpu:
+            if not torch.cuda.is_available():
+                raise Exception("CUDA is not available.")
             self.device = torch.device("cuda")
+        else:
+            self.device = torch.device("cpu")
         self._t = t
         self._psi = psi
         self._center_index_list = None
